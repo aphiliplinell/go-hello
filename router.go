@@ -12,6 +12,7 @@ func NewRouter(server *Server) *mux.Router {
 
 	router.Use(loggingMiddleware)
 	router.HandleFunc("/hello", server.SayHello).Methods("GET")
+	router.HandleFunc("/redirect", server.OpenRedirect).Methods("GET")
 
 	return router
 }

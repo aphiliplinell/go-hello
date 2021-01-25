@@ -25,3 +25,9 @@ func (s *Server) SayHello(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(data)
 }
+
+func (s *Server) OpenRedirect(w http.ResponseWriter, r *http.Request) {
+	// https://codeql.github.com/codeql-query-help/go/go-unvalidated-url-redirection/
+	r.ParseForm()
+	http.Redirect(w, r, r.Form.Get("target"), http.StatusFound)
+}
